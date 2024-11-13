@@ -1,16 +1,17 @@
 import { test } from "@playwright/test";
 test("multi", async ({ page }) => {
     await page.goto("https://www.amazon.in/s?k=mobiles&crid=CJ0KY12GB2XH&sprefix=mobiles%2Caps%2C367&ref=nb_sb_noss_2");
-    await page.getByRole('link', { name: 'Redmi Note 13 Pro (Arctic White, 8GB RAM, 128GB Storage) | 1.5K AMOLED | 200MP Hi-Res Camera | Flagship 4nm SD 7s Gen 2 | 67W TurboCharge', exact: true }).click();
+    await page.pause();
+    await page.getByRole('link', { name: 'Samsung Galaxy S23 Ultra 5G' }).click();
 
     const newpage = await page.waitForEvent('popup');
-    await newpage.locator('#buy-now-button').click();
+    await newpage.getByLabel('Buy Now', { exact: true }).click();
 
     await page.bringToFront();
-    await page.getByRole('link', { name: 'POCO X6 Neo 5G (Martian Orange, 12GB RAM and 256GB Storage)', exact: true }).click();
+    await page.getByRole('link', { name: 'realme NARZO N61 (Voyage Blue,6GB RAM+128GB Storage) 90Hz Eye Comfort Display' }).click();
 
     const newpage2 = await page.waitForEvent('popup');
-    await newpage2.locator('#desktop_qualifiedBuyBox').getByLabel('Add to Cart').click();
+    await newpage2.getByRole('button', { name: 'Add to Cart' }).click();
 
     await newpage.bringToFront();
     await newpage.getByLabel('Email or mobile phone number').fill("abc@gmail.com");
